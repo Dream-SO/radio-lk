@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -114,15 +116,8 @@ public class MainActivity extends AppCompatActivity {
 
      //   backgroundAudioProgress = (ProgressBar)findViewById(R.id.play_audio_in_background_service_progressbar);
 
-        // Get audio file url textview.
-        audioFileUrlTextView = (TextView)findViewById(R.id.audio_file_url_text_view);
-        if(audioFileUrlTextView != null)
-        {
-            // Show web audio file url in the text view.
-            //audioFileUrlTextView.setText("Audio File Url. \r\n" + audioFileUrl);
 
 
-        }
 
         // Click this button to start play audio in a background service.
         Button startBackgroundAudio = (Button)findViewById(R.id.start_audio_in_background);
@@ -218,6 +213,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //unBoundAudioService();
+
+                        audioServiceBinder.stopAudio();
+                        MainActivity.super.onBackPressed();
+
+                    }
+                }).create().show();
+    }
+
 
 
     private boolean checkAudioPermission() {
@@ -249,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         // Unbound background audio service when activity is destroyed.
         unBoundAudioService();
         super.onDestroy();
