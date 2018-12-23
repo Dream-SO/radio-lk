@@ -1,6 +1,7 @@
 package dreamso.com.radiolk;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -25,6 +27,8 @@ import android.widget.Toast;
 
 import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private AudioServiceBinder audioServiceBinder = null;
@@ -35,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
     BarVisualizer mVisualizer;
     ImageView fbView;
     ImageView webView;
+    private TextView tv;
+    private ProgressDialog progressDialog;
+    final String audioFileUrl = "http://109.236.85.141:7316/;";
+    public boolean isSetaudioPlayer = false;
 
 
 
@@ -60,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mVisualizer = findViewById(R.id.blast);
+        tv = (TextView) this.findViewById(R.id.marquee);
+        tv.setSelected(true);  // Set focus to the textview
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+
+
 
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.parseColor("#FF7800")));
@@ -95,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //final String audioFileUrl = "http://www.dev2qa.com/demo/media/test.mp3";
-        final String audioFileUrl = "http://109.236.85.141:7316/;";
+
 
      //   backgroundAudioProgress = (ProgressBar)findViewById(R.id.play_audio_in_background_service_progressbar);
 
@@ -114,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
         startBackgroundAudio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog.show();
+                //Toast.makeText(getApplicationContext(), "starting.. RadioLK", Toast.LENGTH_LONG).show();
                 // Set web audio file url
                 audioServiceBinder.setAudioFileUrl(audioFileUrl);
 
@@ -139,8 +156,11 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                // backgroundAudioProgress.setVisibility(ProgressBar.VISIBLE);
+                if (progressDialog.isShowing()) {
+                    progressDialog.cancel();
+                }
 
-                Toast.makeText(getApplicationContext(), "Start play web audio file.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "playing RadioLK", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -150,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 audioServiceBinder.pauseAudio();
-                Toast.makeText(getApplicationContext(), "Play web audio file is paused.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Play web audio file is paused.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -161,11 +181,44 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 audioServiceBinder.stopAudio();
                // backgroundAudioProgress.setVisibility(ProgressBar.INVISIBLE);
-                Toast.makeText(getApplicationContext(), "Stop play web audio file.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Stop play web audio file.", Toast.LENGTH_LONG).show();
             }
         });
 
     }
+
+    public void setPlayer(){
+        // Set web audio file url
+        audioServiceBinder.setAudioFileUrl(audioFileUrl);
+
+
+
+        // Web audio is a stream audio.
+        audioServiceBinder.setStreamAudio(true);
+
+        // Set application context.
+        audioServiceBinder.setContext(getApplicationContext());
+
+        // Initialize audio progress bar updater Handler object.
+        createAudioProgressbarUpdater();
+        audioServiceBinder.setAudioProgressUpdateHandler(audioProgressUpdateHandler);
+
+        audioSessionId = audioServiceBinder.getAudioSessionId();
+
+        if (audioSessionId != -1 && audioSessionId != AudioManager.ERROR){
+            mVisualizer.setAudioSessionId(audioSessionId);
+        }
+
+        isSetaudioPlayer = true;
+
+        // Start audio in background service.
+        //audioServiceBinder.startAudio();
+
+
+
+    }
+
+
 
     private boolean checkAudioPermission() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;

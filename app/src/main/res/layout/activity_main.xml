@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/myblack"
+
     tools:context="dreamso.com.radiolk.MainActivity">
 
     <com.gauravk.audiovisualizer.visualizer.BarVisualizer xmlns:custom="http://schemas.android.com/apk/res-auto"
@@ -23,10 +23,10 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/stop_audio_in_background"
+        android:layout_height="100pt"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="101dp"
+        android:layout_below="@+id/audio_file_url_text_view"
+        android:layout_marginTop="15dp"
         app:srcCompat="@mipmap/radiologo" />
 
     <TextView
@@ -85,6 +85,33 @@
         android:layout_alignTop="@+id/fblogo"
         android:layout_toEndOf="@+id/start_audio_in_background"
         app:srcCompat="@mipmap/website" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50pt"
+        android:layout_alignBaseline="@+id/audio_file_url_text_view"
+        android:layout_alignBottom="@+id/audio_file_url_text_view"
+        android:layout_alignParentStart="true"
+        android:text="RadioLk from hill city capital Kandy"
+        android:textAlignment="center"
+        android:textColor="@color/myorange"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/marquee"
+        android:layout_width="wrap_content"
+        android:layout_height="15pt"
+        android:layout_above="@+id/fblogo"
+        android:layout_alignParentStart="true"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="දශම අතර කැරකෙන්නෙ නැතුව එදත් අදත් හිට්ම සින්දු අහන්න තියන එකම තැන "
+        android:textColor="#ff4500"
+        android:textSize="16sp" />
 
 
 </RelativeLayout>

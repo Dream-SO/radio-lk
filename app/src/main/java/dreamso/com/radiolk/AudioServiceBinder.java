@@ -83,6 +83,8 @@ public class AudioServiceBinder extends Binder {
         this.audioProgressUpdateHandler = audioProgressUpdateHandler;
     }
 
+
+
     // Start play audio.
     public void startAudio()
     {
@@ -110,7 +112,7 @@ public class AudioServiceBinder extends Binder {
     }
 
     // Initialise audio player.
-    private void initAudioPlayer()
+    public void initAudioPlayer()
     {
         try {
             if (audioPlayer == null) {
