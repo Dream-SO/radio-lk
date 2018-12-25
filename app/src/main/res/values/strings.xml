@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RadioLK</string>
+    <string name="tagline">RadioLk from hill city capital Kandy</string>
+    <string name="merqutext">දශම අතර කැරකෙන්නෙ නැතුව එදත් අදත් හිට්ම සින්දු අහන්න තියන එකම තැන</string>
+    <string name="todo">TODO</string>
+    <string name="website">website</string>
+    <string name="fblogo">fblogo</string>
+    <string name="radiologo">radiologo</string>
 </resources>

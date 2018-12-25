@@ -13,12 +13,16 @@
         android:layout_height="343dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         custom:avColor="@color/myorange"
         custom:avDensity="0.8"
         custom:avSpeed="normal"
         custom:avType="fill"
+        custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
+        custom:layout_constraintTop_toTopOf="@+id/textView"
+        custom:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -31,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/blast"
-        app:srcCompat="@mipmap/radiologo" />
+        app:srcCompat="@mipmap/radiologo" android:contentDescription="@string/radiologo" />
 
     <TextView
         android:id="@+id/textView"
@@ -40,7 +44,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="RadioLk from hill city capital Kandy"
+        android:text="@string/tagline"
         android:textAlignment="center"
         android:textColor="@color/myorange"
         android:textStyle="bold"
@@ -50,47 +54,45 @@
 
     <Button
         android:id="@+id/start_audio_in_background"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@mipmap/playbtn"
-        app:layout_constraintBottom_toBottomOf="@+id/marquee"
-        app:layout_constraintTop_toBottomOf="@+id/blast"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="167dp" />
+        app:layout_constraintBottom_toTopOf="@+id/marquee"
+        app:layout_constraintEnd_toStartOf="@+id/pause_audio_in_background"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toEndOf="@+id/stop_audio_in_background"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/stop_audio_in_background"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="8dp"
         android:background="@mipmap/stopbutton"
         app:layout_constraintBottom_toTopOf="@+id/fblogo"
-        app:layout_constraintEnd_toStartOf="@+id/start_audio_in_background"
-        app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blast"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.955" />
 
     <Button
         android:id="@+id/pause_audio_in_background"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginTop="8dp"
         android:background="@mipmap/pausebtn"
         app:layout_constraintBottom_toTopOf="@+id/websitelogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintStart_toEndOf="@+id/start_audio_in_background"
-        app:layout_constraintTop_toBottomOf="@+id/blast"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.955" />
 
     <ImageView
         android:id="@+id/fblogo"
@@ -99,42 +101,45 @@
         android:layout_marginEnd="88dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:contentDescription="@string/fblogo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/websitelogo"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marquee"
-        app:layout_constraintVertical_bias="0.709"
+        app:layout_constraintVertical_bias="0.823"
         app:srcCompat="@mipmap/fblogo" />
 
     <ImageView
         android:id="@+id/websitelogo"
         android:layout_width="76dp"
         android:layout_height="90dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="56dp"
         android:layout_marginTop="8dp"
+        android:contentDescription="@string/website"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marquee"
-        app:layout_constraintVertical_bias="0.709"
+        app:layout_constraintVertical_bias="0.823"
         app:srcCompat="@mipmap/website" />
 
     <TextView
         android:id="@+id/marquee"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="26dp"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginStart="8dp"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:text="දශම අතර කැරකෙන්නෙ නැතුව එදත් අදත් හිට්ම සින්දු අහන්න තියන එකම තැන "
+        android:text="@string/merqutext"
         android:textColor="#ff4500"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
