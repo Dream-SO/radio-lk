@@ -17,6 +17,8 @@ import java.io.IOException;
 
 public class AudioServiceBinder extends Binder {
 
+
+
     // Save local audio file uri ( local storage file. ).
     String stream = "http://109.236.85.141:7316/;";
     private Uri audioFileUri = Uri.parse(stream);
@@ -40,6 +42,8 @@ public class AudioServiceBinder extends Binder {
 
     // This is the message signal that inform audio progress updater to update audio progress.
     public final int UPDATE_AUDIO_PROGRESS_BAR = 1;
+
+
 
     public Context getContext() {
         return context;
