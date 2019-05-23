@@ -6,10 +6,11 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <application
         android:allowBackup="true"
@@ -17,13 +18,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <service android:name=".player.RadioService"/>
-
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,16 +26,25 @@
             </intent-filter>
         </activity>
 
-        <!-- A receiver that will receive media buttons and send as
+        <service android:name=".player.RadioService" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <!--
+ A receiver that will receive media buttons and send as
             intents to your MediaBrowserServiceCompat implementation.
             Required on pre-Lollipop. More information at
-            http://developer.android.com/reference/android/support/v4/media/session/MediaButtonReceiver.html -->
-        <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" >
+            http://developer.android.com/reference/android/support/v4/media/session/MediaButtonReceiver.html
+        -->
+        <receiver android:name="android.support.v4.media.session.MediaButtonReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
