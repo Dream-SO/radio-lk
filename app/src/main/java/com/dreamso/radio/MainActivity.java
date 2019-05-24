@@ -2,13 +2,16 @@ package com.dreamso.radio;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.audiofx.Visualizer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -214,6 +217,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //unBoundAudioService();
+                        //finish();
+                        radioManager.unbind();
+                        MainActivity.super.onBackPressed();
+
+
+
+                    }
+                }).create();
+
+        dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#FF7800"));
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#FF7800"));
+            }
+        });
+
+
+        dialog.show();
+    }
+
     private boolean checkAudioPermission() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
     }
@@ -251,11 +286,7 @@ public class MainActivity extends AppCompatActivity {
         radioManager.bind();
     }
 
-    @Override
-    public void onBackPressed() {
 
-        finish();
-    }
 
     @Subscribe
     public void onEvent(String status){
