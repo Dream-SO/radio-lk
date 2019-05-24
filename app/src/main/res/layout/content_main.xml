@@ -4,23 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.dreamso.radio.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.dreamso.radio.MainActivity">
+
+    <ImageView
+        android:id="@+id/applogo"
+        android:layout_width="450dp"
+        android:layout_height="300dp"
+        android:layout_alignTop="@+id/tagline"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginRight="61dp"
+        android:gravity="center"
+        app:srcCompat="@drawable/radiologo" />
+
+
+    <ImageView
+        android:id="@+id/voldowns"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/applogo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="128dp"
+        android:src="@drawable/ic_volume_up_black_24dp" />
+
+
+    <ImageView
+        android:id="@+id/volup"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/applogo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="1dp"
+        android:src="@drawable/ic_volume_down_black_24dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="180dp"
+        android:layout_height="33dp"
+        android:layout_below="@+id/applogo"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toStartOf="@+id/voldowns"
+        android:layout_toLeftOf="@+id/voldowns"
+        android:layout_toEndOf="@+id/volup"
+        android:layout_toRightOf="@+id/volup"
+        android:progressTint="@color/colorPrimary"
+        android:thumbTint="@color/colorPrimary" />
 
 
     <ImageButton
         android:id="@+id/playTrigger"
-        android:layout_width="373dp"
-        android:layout_height="99dp"
-        android:layout_above="@+id/marquee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBar"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginStart="-1dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="0dp"
         android:background="@null"
         android:backgroundTint="@android:color/transparent"
         android:src="@drawable/playbtnnew"
@@ -28,59 +88,20 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="322dp"
-        android:layout_height="53dp"
-        android:layout_above="@+id/imageView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="49dp"
-        android:layout_marginRight="49dp"
-        android:layout_marginBottom="21dp"
-        android:gravity="center|start"
-        android:textColor="@color/myorange"
-        android:text="@string/tagline"
-        android:textSize="20sp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="259dp"
-        android:layout_height="218dp"
-        android:layout_above="@+id/playTrigger"
-        android:layout_alignParentStart="true"
-
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="78dp"
-        android:layout_marginLeft="78dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginRight="74dp"
-        android:layout_marginBottom="66dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:srcCompat="@drawable/radiologo" />
-
-    <TextView
         android:id="@+id/marquee"
-        android:layout_width="388dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:layout_below="@+id/playTrigger"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
-        android:layout_marginBottom="123dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:marqueeRepeatLimit="marquee_forever"
@@ -95,89 +116,65 @@
 
     <ImageView
         android:id="@+id/fblogo"
-        android:layout_width="81dp"
-        android:layout_height="76dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_width="92dp"
+        android:layout_height="101dp"
+        android:layout_below="@+id/marquee"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-
-
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="83dp"
-        android:layout_marginRight="83dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/websitelogo"
-        app:layout_constraintHorizontal_bias="0.635"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/marquee"
-        app:layout_constraintVertical_bias="0.823"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginRight="63dp"
+        android:layout_marginBottom="51dp"
+        android:layout_toStartOf="@+id/websitelogo"
+        android:layout_toLeftOf="@+id/websitelogo"
+        android:gravity="center"
         app:srcCompat="@drawable/fblogo" />
 
     <ImageView
         android:id="@+id/websitelogo"
-        android:layout_width="93dp"
-        android:layout_height="89dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-
+        android:layout_width="95dp"
+        android:layout_height="105dp"
+        android:layout_below="@+id/marquee"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="94dp"
-        android:layout_marginLeft="94dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginBottom="18dp"
-        android:layout_toStartOf="@+id/fblogo"
-        android:layout_toLeftOf="@+id/fblogo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/marquee"
-        app:layout_constraintVertical_bias="0.823"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
+        android:layout_marginBottom="52dp"
+        android:gravity="center"
         app:srcCompat="@drawable/website" />
 
-
-    <ImageView
-        android:layout_width="43dp"
-        android:layout_height="30dp"
+    <TextView
+        android:id="@+id/tagline"
+        android:layout_width="263dp"
+        android:layout_height="26dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="58dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="273dp"
-        android:layout_toStartOf="@+id/seekBar"
-        android:layout_toLeftOf="@+id/seekBar"
-        android:src="@drawable/ic_volume_down_black_24dp" />
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginEnd="133dp"
+        android:layout_marginRight="133dp"
+        android:layout_marginBottom="763dp"
+        android:gravity="center"
+        android:text="@string/tagline"
+        android:textColor="@color/myorange"
+        android:textSize="18sp" />
 
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="187dp"
+    <com.dreamso.radio.player.VisualizerView
+        android:id="@+id/view_visualizer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/playTrigger"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:progressTint="@color/colorPrimary"
-        android:thumbTint="@color/colorPrimary"
-        android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
-        android:layout_marginBottom="4dp" />
-
-    <ImageView
-        android:layout_width="43dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="69dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginBottom="273dp"
-        android:src="@drawable/ic_volume_up_black_24dp" />
-
-
+        android:layout_marginTop="306dp"
+        android:layout_marginBottom="249dp" />
 
 
 </RelativeLayout>

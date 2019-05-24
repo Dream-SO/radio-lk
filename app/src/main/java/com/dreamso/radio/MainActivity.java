@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton trigger;
 
 
-    @BindView(R.id.name)
-    TextView textView;
+
 
     @BindView(R.id.marquee)
     TextView marqueeText;
