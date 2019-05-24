@@ -1,6 +1,7 @@
 package com.dreamso.radio;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
@@ -11,10 +12,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.view_visualizer)
     VisualizerView mVisualizerView;
 
+    @BindView(R.id.seekBar)
+    SeekBar volumeSeekbar;
+
 
     RadioManager radioManager;
 
@@ -63,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
     //visualiser
     private Visualizer mVisualizer;
     private static final int PERM_REQ_CODE = 23;
+
+    private AudioManager audioManager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         initAudio();
+
+        initControls();
 
 
         fbView.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +123,62 @@ public class MainActivity extends AppCompatActivity {
         setupVisualizerFxAndUi();
         mVisualizer.setEnabled(true);
     }
+
+    private void initControls()
+    {
+        try
+        {
+            audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            volumeSeekbar.setMax(audioManager
+                    .getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+            volumeSeekbar.setProgress(audioManager
+                    .getStreamVolume(AudioManager.STREAM_MUSIC));
+
+
+            volumeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+            {
+                @Override
+                public void onStopTrackingTouch(SeekBar arg0)
+                {
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar arg0)
+                {
+                }
+
+                @Override
+                public void onProgressChanged(SeekBar arg0, int progress, boolean arg2)
+                {
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+                            progress, 0);
+                }
+
+
+            });
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP)
+        {
+            int index = volumeSeekbar.getProgress();
+            volumeSeekbar.setProgress(index + 1);
+            return true;
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
+        {
+            int index = volumeSeekbar.getProgress();
+            volumeSeekbar.setProgress(index - 1);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     private void setupVisualizerFxAndUi() {
         // Create the Visualizer object and attach it to our media player.
