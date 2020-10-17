@@ -104,7 +104,7 @@
         android:layout_marginRight="8dp"
         android:background="@null"
         android:backgroundTint="@android:color/transparent"
-        android:src="@drawable/playbtnnew"
+        android:src="@drawable/playbtnnew2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

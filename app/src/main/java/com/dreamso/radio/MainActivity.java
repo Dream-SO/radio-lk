@@ -307,8 +307,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         trigger.setImageResource(status.equals(PlaybackStatus.PLAYING)
-                ? R.drawable.pausebtnnew
-                : R.drawable.playbtnnew);
+                ? R.drawable.pausebtnnew2
+                : R.drawable.playbtnnew2);
 
     }
 
