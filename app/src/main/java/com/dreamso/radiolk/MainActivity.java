@@ -62,9 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     RadioManager radioManager;
-
-    //String streamURL = "http://109.236.85.141:7316/";
-    String streamURL = "https://eu2-centova.serverse.com/proxy/oelmebep?mp=/streamstream?type=http&nocache=55";
+    String streamURL = String.valueOf(R.string.stream_url);
 
 
     //visualiser
@@ -101,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         fbView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                Uri uri = Uri.parse("http://www.facebook.com/radiolkonline");
+                Uri uri = Uri.parse(String.valueOf(R.string.facebook_url));
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
@@ -110,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         webView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                Uri uri = Uri.parse("http://www.radiolanka.lk/");
+                Uri uri = Uri.parse(String.valueOf(R.string.website_url));
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }

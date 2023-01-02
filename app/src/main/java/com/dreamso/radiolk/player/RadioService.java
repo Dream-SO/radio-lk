@@ -72,7 +72,7 @@ public class RadioService extends Service implements Player.EventListener, Audio
 
     private String strAppName;
     private String strLiveBroadcast;
-    private String streamUrl = "http://109.236.85.141:7316/";
+    private String streamUrl = "";
 
     public int sessionID;
 
