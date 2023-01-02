@@ -62,10 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     RadioManager radioManager;
-
-    //String streamURL = "http://109.236.85.141:7316/";
-    String streamURL = "https://eu2-centova.serverse.com/proxy/oelmebep?mp=/streamstream?type=http&nocache=55";
-
+    String streamURL = "https://dc2.serverse.com:8008/stream";
 
     //visualiser
     private Visualizer mVisualizer;
